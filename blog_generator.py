@@ -365,14 +365,15 @@ def factors():
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("All we need to consider while buying " + category)
