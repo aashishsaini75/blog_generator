@@ -13,6 +13,8 @@ from selenium.common.exceptions import NoSuchElementException
 
 import os
 
+"""Declaring Version"""
+ver = 1.0
 """Getting Category Name"""
 
 category = input("\nPlease enter the category name")
@@ -803,7 +805,7 @@ def conclusion():
         writer.writerow(data)
 #
 start_time = time.time()
-
+print("Running Blog Generator",ver)
 login()
 introduction()
 factors()
