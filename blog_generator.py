@@ -1,9 +1,5 @@
-import json
-import os
-import platform
-import sys,csv,winsound
-import time
-import webbrowser
+import sys,csv,winsound,os,platform,json,time,webbrowser
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -11,13 +7,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 
-import os
-
 """Declaring Version"""
 ver = 1.0
 """Getting Category Name"""
 
-category = input("\nPlease enter the category name")
+category = input("\nPlease enter the category name and press enter ")
+category = category.strip()
 
 """declaring sound config"""
 
@@ -117,14 +112,15 @@ def introduction():
 
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//h2[contains(text(), 'Blogs 📝 ')]")))
         driver.find_element_by_xpath("//h2[contains(text(), 'Blogs 📝 ')]").click()
+        if check_exists_by_xpath(captcha_xpath) ==  True:
+            play_sound()
+            input("\nPlease handle the captcha and press enter")
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@role = 'searchbox']")))
         driver.find_element_by_xpath("//input[@role = 'searchbox']").send_keys(category)
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
         time.sleep(3)
-        if check_exists_by_xpath(captcha_xpath) ==  True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
+
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -138,26 +134,35 @@ def introduction():
         title.clear()
         title.send_keys("What are "+category+" used for?")
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//button[contains(text(), 'Generate')]")))
+        time.sleep(1)
         driver.find_element_by_xpath("//button[contains(text(), 'Generate')]").click()
         WebDriverWait(driver, 62).until(
             EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
         driver.refresh()
-        els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
-        els[0].click()
+        try:
+            els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+            els[0].click()
+        except:
+            driver.get('https://nichesss.com/home/marketing-plans')
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
+            els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+            els[0].click()
         time.sleep(3)
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        if check_exists_by_xpath(captcha_xpath) ==  True:
+            play_sound()
+            input("\nPlease handle the captcha and press enter")
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
         time.sleep(3)
-        if check_exists_by_xpath(captcha_xpath) ==  True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
+
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -170,24 +175,24 @@ def introduction():
         title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
         title.clear()
         title.send_keys('We explain why people use ' + category)
-
-
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+        time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
         time.sleep(3)
         add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        if check_exists_by_xpath(captcha_xpath) ==  True:
+            play_sound()
+            input("\nPlease handle the captcha and press enter")
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
         time.sleep(3)
-        if check_exists_by_xpath(captcha_xpath) ==  True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
+
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -200,24 +205,24 @@ def introduction():
         title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
         title.clear()
         title.send_keys('What are ' + category)
-
-
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+        time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
         time.sleep(3)
         add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        if check_exists_by_xpath(captcha_xpath) == True:
+            play_sound()
+            input("\nPlease handle the captcha and press enter")
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
         time.sleep(3)
-        if check_exists_by_xpath(captcha_xpath) == True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
+
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -230,26 +235,23 @@ def introduction():
         title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
         title.clear()
         title.send_keys('We explain what is ' + category+'?')
-        if check_exists_by_xpath(captcha_xpath) == True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
-
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+        time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
         time.sleep(3)
         add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        if check_exists_by_xpath(captcha_xpath) == True:
+            play_sound()
+            input("\nPlease handle the captcha and press enter")
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
         time.sleep(3)
-        if check_exists_by_xpath(captcha_xpath) ==  True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -262,9 +264,9 @@ def introduction():
         title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
         title.clear()
         title.send_keys('We explain the use of ' + category + "?")
-
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+        time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
         time.sleep(3)
         driver.refresh()
@@ -287,14 +289,15 @@ def factors():
         EC.visibility_of_element_located((By.XPATH, "//h2[contains(text(), 'Blogs 📝 ')]")))
     driver.find_element_by_xpath("//h2[contains(text(), 'Blogs 📝 ')]").click()
     WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@role = 'searchbox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//input[@role = 'searchbox']").send_keys(category)
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("Factors to consider before buying "+category)
@@ -309,13 +312,22 @@ def factors():
     title.send_keys("Factors to consider before buying "+category)
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//button[contains(text(), 'Generate')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//button[contains(text(), 'Generate')]").click()
     WebDriverWait(driver, 62).until(
         EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
     ###
     driver.refresh()
-    els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
-    els[0].click()
+    try:
+        els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+        els[0].click()
+    except:
+        driver.get('https://nichesss.com/home/marketing-plans')
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
+        els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+        els[0].click()
+
     time.sleep(3)
     driver.refresh()
     add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
@@ -323,14 +335,15 @@ def factors():
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("What people discuss before buying "+category)
@@ -343,11 +356,9 @@ def factors():
     title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
     title.clear()
     title.send_keys('What people discuss before buying ' + category)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     time.sleep(3)
     add_more.click()
@@ -374,26 +385,24 @@ def factors():
     title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
     title.clear()
     title.send_keys('All we need to consider while buying' + category)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
-
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     time.sleep(3)
     add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("What buyers discuss while buying " + category+" on amazon")
@@ -406,26 +415,24 @@ def factors():
     title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
     title.clear()
     title.send_keys('What buyers discuss while buying ' + category+' on amazon')
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
-
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     time.sleep(3)
     add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("What factors users consider before buying " + category + " on amazon")
@@ -438,12 +445,9 @@ def factors():
     title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
     title.clear()
     title.send_keys('What factors users consider before buying ' + category + ' on amazon')
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
-
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     WebDriverWait(driver, 62).until(
         EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
@@ -464,14 +468,15 @@ def factor_to_consider():
                 driver.find_element_by_xpath("//h2[contains(text(), 'Blogs 📝 ')]").click()
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//input[@role = 'searchbox']")))
+                if check_exists_by_xpath(captcha_xpath) == True:
+                    play_sound()
+                    input("\nPlease handle the captcha and press enter")
                 driver.find_element_by_xpath("//input[@role = 'searchbox']").send_keys(category)
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
                 driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
                 time.sleep(3)
-                if check_exists_by_xpath(captcha_xpath) == True:
-                    play_sound()
-                    input("\nPlease handle the captcha and press enter")
+
                 blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
                 blog_name.clear()
                 blog_name.send_keys(fac_to_c_name[j].format(factor,category))
@@ -486,12 +491,20 @@ def factor_to_consider():
                 title.send_keys(fac_to_c_title[j].format(factor,category))
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//button[contains(text(), 'Generate')]")))
+                time.sleep(1)
                 driver.find_element_by_xpath("//button[contains(text(), 'Generate')]").click()
                 WebDriverWait(driver, 62).until(
                     EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
                 driver.refresh()
-                els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
-                els[0].click()
+                try:
+                    els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+                    els[0].click()
+                except:
+                    driver.get('https://nichesss.com/home/marketing-plans')
+                    WebDriverWait(driver, 20).until(
+                        EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
+                    els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+                    els[0].click()
                 try:
                     WebDriverWait(driver, 20).until(
                         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
@@ -514,14 +527,15 @@ def benefit():
         EC.visibility_of_element_located((By.XPATH, "//h2[contains(text(), 'Blogs 📝 ')]")))
     driver.find_element_by_xpath("//h2[contains(text(), 'Blogs 📝 ')]").click()
     WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@role = 'searchbox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//input[@role = 'searchbox']").send_keys(category)
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("What are the benefits of "+category)
@@ -536,13 +550,21 @@ def benefit():
     title.send_keys("What are the benefits of "+category)
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//button[contains(text(), 'Generate')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//button[contains(text(), 'Generate')]").click()
     WebDriverWait(driver, 62).until(
         EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
     ###
     driver.refresh()
-    els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
-    els[0].click()
+    try:
+        els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+        els[0].click()
+    except:
+        driver.get('https://nichesss.com/home/marketing-plans')
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
+        els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+        els[0].click()
     time.sleep(3)
     driver.refresh()
     add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
@@ -550,14 +572,15 @@ def benefit():
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("Benefits of "+category)
@@ -572,20 +595,22 @@ def benefit():
     title.send_keys('Benefits of ' + category)
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     time.sleep(3)
     add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("Advantages of " + category)
@@ -600,20 +625,22 @@ def benefit():
     title.send_keys('Advantages of ' + category)
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     time.sleep(3)
     add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("What benefits do people seek in " + category)
@@ -628,20 +655,22 @@ def benefit():
     title.send_keys('What benefits do people seek in ' + category)
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     time.sleep(3)
     add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+    if check_exists_by_xpath(captcha_xpath) == True:
+        play_sound()
+        input("\nPlease handle the captcha and press enter")
     driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     time.sleep(3)
-    if check_exists_by_xpath(captcha_xpath) == True:
-        play_sound()
-        input("\nPlease handle the captcha and press enter")
+
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("What benefits does " + category + " provide")
@@ -656,6 +685,7 @@ def benefit():
     title.send_keys('What benefits does ' + category + ' provide')
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+    time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
     WebDriverWait(driver, 62).until(
         EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
@@ -677,14 +707,15 @@ def benefit_of_item():
                 driver.find_element_by_xpath("//h2[contains(text(), 'Blogs 📝 ')]").click()
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//input[@role = 'searchbox']")))
+                if check_exists_by_xpath(captcha_xpath) == True:
+                    play_sound()
+                    input("\nPlease handle the captcha and press enter")
                 driver.find_element_by_xpath("//input[@role = 'searchbox']").send_keys(category)
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
                 driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
                 time.sleep(3)
-                if check_exists_by_xpath(captcha_xpath) == True:
-                    play_sound()
-                    input("\nPlease handle the captcha and press enter")
+
                 blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
                 blog_name.clear()
                 blog_name.send_keys(ban_of_item_name[j].format(category,benefit))
@@ -699,13 +730,20 @@ def benefit_of_item():
                 title.send_keys(ban_of_item_title[j].format(category,benefit))
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//button[contains(text(), 'Generate')]")))
-                time.sleep(30)
+                time.sleep(1)
                 driver.find_element_by_xpath("//button[contains(text(), 'Generate')]").click()
                 WebDriverWait(driver, 62).until(
                     EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
                 driver.refresh()
-                els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
-                els[0].click()
+                try:
+                    els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+                    els[0].click()
+                except:
+                    driver.get('https://nichesss.com/home/marketing-plans')
+                    WebDriverWait(driver, 20).until(
+                        EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
+                    els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+                    els[0].click()
                 try:
                     WebDriverWait(driver, 20).until(
                         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
@@ -731,14 +769,15 @@ def conclusion():
             EC.visibility_of_element_located((By.XPATH, "//h2[contains(text(), 'Blogs 📝 ')]")))
         driver.find_element_by_xpath("//h2[contains(text(), 'Blogs 📝 ')]").click()
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@role = 'searchbox']")))
+        if check_exists_by_xpath(captcha_xpath) == True:
+            play_sound()
+            input("\nPlease handle the captcha and press enter")
         driver.find_element_by_xpath("//input[@role = 'searchbox']").send_keys(category)
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
         time.sleep(3)
-        if check_exists_by_xpath(captcha_xpath) == True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
+
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -751,31 +790,39 @@ def conclusion():
         title = driver.find_element_by_xpath("//textarea[@name = 'post_title']")
         title.clear()
         title.send_keys("What are " + category + " used for?")
-        while "I am human" in driver.page_source:
-            a = input("\nPlease handle the captcha and press enter")
-            break
+
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//button[contains(text(), 'Generate')]")))
+        time.sleep(1)
+
         driver.find_element_by_xpath("//button[contains(text(), 'Generate')]").click()
         WebDriverWait(driver, 62).until(
             EC.invisibility_of_element_located((By.XPATH, "//span[class = 'ml-2 waiting-plans']")))
         driver.refresh()
-        els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
-        els[0].click()
+        try:
+            els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+            els[0].click()
+        except:
+            driver.get('https://nichesss.com/home/marketing-plans')
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
+            els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
+            els[0].click()
         time.sleep(3)
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        if check_exists_by_xpath(captcha_xpath) == True:
+            play_sound()
+            input("\nPlease handle the captcha and press enter")
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
         time.sleep(3)
-        if check_exists_by_xpath(captcha_xpath) == True:
-            play_sound()
-            input("\nPlease handle the captcha and press enter")
+
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -790,6 +837,8 @@ def conclusion():
         title.send_keys('We explain why people use ' + category)
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
+        time.sleep(1)
+
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
         time.sleep(3)
         driver.refresh()
