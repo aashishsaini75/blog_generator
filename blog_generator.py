@@ -6,9 +6,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
+import itertools
+import threading
+import time
+import sys
 
 """Declaring Version"""
-ver = 1.0
+ver = 1.1
 """Getting Category Name"""
 
 category = input("\nPlease enter the category name and press enter ")
@@ -16,13 +20,12 @@ category = category.strip()
 
 """declaring sound config"""
 
-duration = 500  # milliseconds
-freq = 440  # Hz
+duration = 250  # milliseconds
+freq = [440,880,440,880]  # Hz
 
 captcha_xpath = "//div[@class = 'h-captcha']"
 
 """Declaring chromepath"""
-
 chromepath = ""
 if platform.system() == "Darwin":
     chromepath = os.path.abspath("drivers/chromedriver")
@@ -31,6 +34,8 @@ elif platform.system() == "Windows":
 elif platform.system() == 'Linux':
     chromepath = os.path.abspath("drivers/chromedriver_linux")
 chrome_options = webdriver.ChromeOptions()
+chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
 driver = ""
 url = "https://nichesss.com/home"
 try:
@@ -69,7 +74,7 @@ fac_to_c_title = ['We explain what are {} in {}','We explain Why {} are essentia
 """Declaring benefits"""
 
 ban_of_item_name = ['How {} enhances {}','How {} enhances the {}','How {} enhances {}','How {} enhances {}','How {} enhances {}']
-ban_of_item_cat =['{}, "{}"','{} supplements, "{}"','{} , "{}"','{} supplements, "good {}"','{} supplements, "{}"']
+ban_of_item_cat =['{}, "{}"','{}, "{}"','{} , "{}"','{}, "good {}"','{}, "{}"']
 ban_of_item_about = ['{} enhances {}','How {} enhances the {}.','How {} enhances {}','How {} enhances {}','How {} enhances {}.']
 ban_of_item_title = ['{} enhances {}','How {} enhances the {}.','How {} enhances {}','How {} enhances {}','How {} enhances {}.']
 
@@ -97,15 +102,15 @@ def check_exists_by_xpath(xpath):
     except NoSuchElementException:
         return False
     return True
-
+done = False
 def play_sound():
-    for i in range(2):
-        winsound.Beep(freq, duration)
+    for i in range(4):
+        winsound.Beep(freq[i], duration)
     sys.stdout.flush()
 def introduction():
     sys.stdout.write("\rGenerating Introduction")
     sys.stdout.flush()
-    with open(category+'.csv', 'a', newline='', encoding="utf-8") as file:
+    with open(category+'.csv', 'a', newline='', encoding="utf-8-sig") as file:
         fieldnames = ['Introduction', 'output 1', 'output 2','output 3', 'output 4','output 5', 'output 6','output 7', 'output 8','output 9', 'output 10']
         writer = csv.writer(file, delimiter=',')
         writer.writerow(fieldnames)
@@ -148,9 +153,20 @@ def introduction():
                 EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
             els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
             els[0].click()
-        time.sleep(3)
+        try:
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
-        add_more.click()
+        driver.execute_script("arguments[0].scrollIntoView();", add_more)
+        try:
+            add_more.click()
+        except:
+            time.sleep(1)
+            add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -179,8 +195,19 @@ def introduction():
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
         time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-        time.sleep(3)
-        add_more.click()
+        try:
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        driver.execute_script("arguments[0].scrollIntoView();", add_more)
+        try:
+            add_more.click()
+        except:
+            time.sleep(1)
+            add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -209,8 +236,19 @@ def introduction():
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
         time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-        time.sleep(3)
-        add_more.click()
+        try:
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        driver.execute_script("arguments[0].scrollIntoView();", add_more)
+        try:
+            add_more.click()
+        except:
+            time.sleep(1)
+            add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -239,8 +277,19 @@ def introduction():
             EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
         time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-        time.sleep(3)
-        add_more.click()
+        try:
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        driver.execute_script("arguments[0].scrollIntoView();", add_more)
+        try:
+            add_more.click()
+        except:
+            time.sleep(1)
+            add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -282,7 +331,7 @@ def introduction():
         writer.writerow(data)
 
 def factors():
-    sys.stdout.write("\rGenerating Factors")
+    sys.stdout.write("\rGenerating Factors          ")
     sys.stdout.flush()
     driver.get(url=url)
     WebDriverWait(driver, 20).until(
@@ -327,11 +376,20 @@ def factors():
             EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
         els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
         els[0].click()
-
-    time.sleep(3)
-    driver.refresh()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
-    add_more.click()
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -360,8 +418,19 @@ def factors():
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
     time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-    time.sleep(3)
-    add_more.click()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -390,8 +459,19 @@ def factors():
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
     time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-    time.sleep(3)
-    add_more.click()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -420,8 +500,19 @@ def factors():
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
     time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-    time.sleep(3)
-    add_more.click()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -456,7 +547,7 @@ def factors():
 def factor_to_consider():
     sys.stdout.write("\rGenerating factors to consider")
     sys.stdout.flush()
-    with open(category + '.csv', 'a', newline='', encoding="utf-8") as file:
+    with open(category + '.csv', 'a', newline='', encoding='utf-8-sig') as file:
         fieldnames = ['', '', '', '', '', '', '',
                       '', '', '', '']
         writer = csv.writer(file, delimiter=',')
@@ -515,13 +606,13 @@ def factor_to_consider():
                         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
 
                 blog_text = driver.find_elements_by_xpath("//div[@class = 'col nl-to-br']")
-                data = ['Factors to consider', blog_text[0].text, blog_text[1].text]
+                data = ['Factors to consider ('+factor+")", blog_text[0].text, blog_text[1].text]
                 writer.writerow(data)
             ###
 
 
 def benefit():
-    sys.stdout.write("\rGenerating benefits")
+    sys.stdout.write("\rGenerating benefits                 ")
     sys.stdout.flush()
     driver.get(url=url)
     WebDriverWait(driver, 20).until(
@@ -568,8 +659,20 @@ def benefit():
         els[0].click()
     time.sleep(3)
     driver.refresh()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
-    add_more.click()
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -598,8 +701,19 @@ def benefit():
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
     time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-    time.sleep(3)
-    add_more.click()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -628,8 +742,19 @@ def benefit():
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
     time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-    time.sleep(3)
-    add_more.click()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -658,8 +783,19 @@ def benefit():
         EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Generate more Now')]")))
     time.sleep(1)
     driver.find_element_by_xpath("//a[contains(text(), 'Generate more Now')]").click()
-    time.sleep(3)
-    add_more.click()
+    try:
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+    driver.execute_script("arguments[0].scrollIntoView();", add_more)
+    try:
+        add_more.click()
+    except:
+        time.sleep(1)
+        add_more.click()
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -693,9 +829,9 @@ def benefit():
     driver.refresh()
 
 def benefit_of_item():
-    sys.stdout.write("\rGenerating benefits of item")
+    sys.stdout.write("\rGenerating benefits of item   ")
     sys.stdout.flush()
-    with open(category + '.csv', 'a', newline='', encoding="utf-8") as file:
+    with open(category + '.csv', 'a', newline='', encoding='utf-8-sig') as file:
         fieldnames = ['', '', '', '', '', '', '',
                       '', '', '', '']
         writer = csv.writer(file, delimiter=',')
@@ -754,13 +890,13 @@ def benefit_of_item():
                         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
 
                 blog_text = driver.find_elements_by_xpath("//div[@class = 'col nl-to-br']")
-                data = ['Benefits of the item', blog_text[0].text, blog_text[1].text]
+                data = ['Benefits of the item ('+benefit+")", blog_text[0].text, blog_text[1].text]
                 writer.writerow(data)
             ###
 def conclusion():
-    sys.stdout.write("\rGenerating Conclusion")
+    sys.stdout.write("\rGenerating Conclusion         ")
     sys.stdout.flush()
-    with open(category + '.csv', 'a', newline='', encoding="utf-8") as file:
+    with open(category + '.csv', 'a', newline='', encoding="utf-8-sig") as file:
         fieldnames = ['', '', '', '', '', '', '',
                       '', '', '', '']
         writer = csv.writer(file, delimiter=',')
@@ -809,9 +945,20 @@ def conclusion():
                 EC.visibility_of_all_elements_located((By.XPATH, "//a[@class = 'a--underline font--900']")))
             els = driver.find_elements_by_xpath("//a[@class = 'a--underline font--900']")
             els[0].click()
-        time.sleep(3)
+        try:
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 20).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
-        add_more.click()
+        driver.execute_script("arguments[0].scrollIntoView();", add_more)
+        try:
+            add_more.click()
+        except:
+            time.sleep(1)
+            add_more.click()
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
