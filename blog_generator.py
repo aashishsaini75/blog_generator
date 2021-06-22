@@ -35,6 +35,9 @@ elif platform.system() == 'Linux':
     chromepath = os.path.abspath("drivers/chromedriver_linux")
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+chrome_options.add_argument("--width=2560")
+chrome_options.add_argument("--height=1440")
+
 
 driver = ""
 url = "https://nichesss.com/home"
