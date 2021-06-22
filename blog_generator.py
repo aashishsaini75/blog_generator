@@ -12,7 +12,7 @@ import time
 import sys
 
 """Declaring Version"""
-ver = 1.1
+ver = 1.2
 """Getting Category Name"""
 
 category = input("\nPlease enter the category name and press enter ")
@@ -124,7 +124,8 @@ def introduction():
         driver.find_element_by_xpath("//input[@role = 'searchbox']").send_keys(category)
         WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-        time.sleep(3)
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
@@ -166,7 +167,8 @@ def introduction():
             add_more.click()
         except:
             time.sleep(1)
-            add_more.click()
+            driver.execute_script("arguments[0].click()", add_more)  ###
+
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -177,7 +179,8 @@ def introduction():
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-        time.sleep(3)
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
@@ -207,7 +210,8 @@ def introduction():
             add_more.click()
         except:
             time.sleep(1)
-            add_more.click()
+            driver.execute_script("arguments[0].click()", add_more)  ###
+
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -218,7 +222,8 @@ def introduction():
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-        time.sleep(3)
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
@@ -248,7 +253,8 @@ def introduction():
             add_more.click()
         except:
             time.sleep(1)
-            add_more.click()
+            driver.execute_script("arguments[0].click()", add_more)  ###
+
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -259,7 +265,8 @@ def introduction():
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-        time.sleep(3)
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
@@ -289,7 +296,8 @@ def introduction():
             add_more.click()
         except:
             time.sleep(1)
-            add_more.click()
+            driver.execute_script("arguments[0].click()", add_more)  ###
+
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -300,7 +308,8 @@ def introduction():
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-        time.sleep(3)
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
         blog_name.send_keys(category)
@@ -345,7 +354,8 @@ def factors():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -389,8 +399,7 @@ def factors():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
-    ###
+        driver.execute_script("arguments[0].click()", add_more)    ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
     if check_exists_by_xpath(captcha_xpath) == True:
@@ -400,7 +409,8 @@ def factors():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -430,7 +440,7 @@ def factors():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
+        driver.execute_script("arguments[0].click()", add_more)    ###
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -441,7 +451,8 @@ def factors():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -471,7 +482,8 @@ def factors():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
+        driver.execute_script("arguments[0].click()", add_more)  ###
+
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -482,8 +494,8 @@ def factors():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
-
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("What buyers discuss while buying " + category+" on amazon")
@@ -512,7 +524,8 @@ def factors():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
+        driver.execute_script("arguments[0].click()", add_more)  ###
+
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -523,7 +536,8 @@ def factors():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -567,7 +581,8 @@ def factor_to_consider():
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
                 driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-                time.sleep(3)
+                WebDriverWait(driver, 20).until(
+                    EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
                 blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
                 blog_name.clear()
@@ -626,7 +641,8 @@ def benefit():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -672,7 +688,8 @@ def benefit():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
+        driver.execute_script("arguments[0].click()", add_more)  ###
+
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -683,7 +700,8 @@ def benefit():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -713,7 +731,8 @@ def benefit():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
+        driver.execute_script("arguments[0].click()", add_more)  ###
+
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -724,7 +743,8 @@ def benefit():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -754,7 +774,8 @@ def benefit():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
+        driver.execute_script("arguments[0].click()", add_more)  ###
+
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -765,7 +786,8 @@ def benefit():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -795,7 +817,8 @@ def benefit():
         add_more.click()
     except:
         time.sleep(1)
-        add_more.click()
+        driver.execute_script("arguments[0].click()", add_more)  ###
+
     ###
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -806,7 +829,8 @@ def benefit():
     WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
-    time.sleep(3)
+    WebDriverWait(driver, 20).until(
+        EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
@@ -851,7 +875,8 @@ def benefit_of_item():
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
                 driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-                time.sleep(3)
+                WebDriverWait(driver, 20).until(
+                    EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
                 blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
                 blog_name.clear()
@@ -913,7 +938,8 @@ def conclusion():
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-        time.sleep(3)
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
@@ -958,7 +984,8 @@ def conclusion():
             add_more.click()
         except:
             time.sleep(1)
-            add_more.click()
+            driver.execute_script("arguments[0].click()", add_more)  ###
+
         ###
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
@@ -969,7 +996,8 @@ def conclusion():
         WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
-        time.sleep(3)
+        WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
 
         blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
         blog_name.clear()
