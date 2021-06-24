@@ -12,7 +12,7 @@ import time
 import sys
 
 """Declaring Version"""
-ver = 1.2
+ver = 1.3
 """Getting Category Name"""
 
 category = input("\nPlease enter the category name and press enter ")
@@ -178,7 +178,19 @@ def introduction():
         if check_exists_by_xpath(captcha_xpath) ==  True:
             play_sound()
             input("\nPlease handle the captcha and press enter")
-        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            add_more.click()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 40).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
@@ -221,7 +233,19 @@ def introduction():
         if check_exists_by_xpath(captcha_xpath) ==  True:
             play_sound()
             input("\nPlease handle the captcha and press enter")
-        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            add_more.click()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 40).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
@@ -264,7 +288,19 @@ def introduction():
         if check_exists_by_xpath(captcha_xpath) == True:
             play_sound()
             input("\nPlease handle the captcha and press enter")
-        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            add_more.click()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 40).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
@@ -307,7 +343,19 @@ def introduction():
         if check_exists_by_xpath(captcha_xpath) == True:
             play_sound()
             input("\nPlease handle the captcha and press enter")
-        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            add_more.click()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 40).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
@@ -408,7 +456,19 @@ def factors():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -450,7 +510,19 @@ def factors():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -493,7 +565,19 @@ def factors():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -535,7 +619,19 @@ def factors():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -699,7 +795,19 @@ def benefit():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -742,7 +850,19 @@ def benefit():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -785,7 +905,19 @@ def benefit():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -828,7 +960,19 @@ def benefit():
     if check_exists_by_xpath(captcha_xpath) == True:
         play_sound()
         input("\nPlease handle the captcha and press enter")
-    driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    try:
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+    except:
+        driver.refresh()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+        add_more.click()
+        WebDriverWait(driver, 40).until(
+            EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Outline')]")))
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
@@ -995,7 +1139,19 @@ def conclusion():
         if check_exists_by_xpath(captcha_xpath) == True:
             play_sound()
             input("\nPlease handle the captcha and press enter")
-        driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
+        except:
+            driver.refresh()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            add_more.click()
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_element_located((By.XPATH, "//span[@role = 'combobox']")))
+            driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         WebDriverWait(driver, 40).until(
             EC.visibility_of_element_located((By.XPATH, "//strong[contains(text(), 'Blog Post Intro')]")))
         driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Intro')]").click()
