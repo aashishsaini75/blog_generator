@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException,TimeoutException
 import itertools
 import threading
 import time
@@ -161,9 +161,14 @@ def introduction():
             WebDriverWait(driver, 40).until(
                 EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
         except:
-            driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         driver.execute_script("arguments[0].scrollIntoView();", add_more)
         try:
@@ -184,8 +189,18 @@ def introduction():
             driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         except:
             driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            try:
+                WebDriverWait(driver, 40).until(
+                    EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            except:
+                while True:
+                    try:
+                        driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                    except TimeoutException:
+                        time.sleep(1)
+                        driver.refresh()
+                    else:
+                        break
             add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
             add_more.click()
             WebDriverWait(driver, 40).until(
@@ -217,9 +232,14 @@ def introduction():
             WebDriverWait(driver, 40).until(
                 EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
         except:
-            driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         driver.execute_script("arguments[0].scrollIntoView();", add_more)
         try:
             add_more.click()
@@ -239,8 +259,18 @@ def introduction():
             driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         except:
             driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            try:
+                WebDriverWait(driver, 40).until(
+                    EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            except:
+                while True:
+                    try:
+                        driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                    except TimeoutException:
+                        time.sleep(1)
+                        driver.refresh()
+                    else:
+                        break
             add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
             add_more.click()
             WebDriverWait(driver, 40).until(
@@ -272,9 +302,14 @@ def introduction():
             WebDriverWait(driver, 40).until(
                 EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
         except:
-            driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         driver.execute_script("arguments[0].scrollIntoView();", add_more)
         try:
             add_more.click()
@@ -294,8 +329,18 @@ def introduction():
             driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         except:
             driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            try:
+                WebDriverWait(driver, 40).until(
+                    EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            except:
+                while True:
+                    try:
+                        driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                    except TimeoutException:
+                        time.sleep(1)
+                        driver.refresh()
+                    else:
+                        break
             add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
             add_more.click()
             WebDriverWait(driver, 40).until(
@@ -327,9 +372,14 @@ def introduction():
             WebDriverWait(driver, 40).until(
                 EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
         except:
-            driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         driver.execute_script("arguments[0].scrollIntoView();", add_more)
         try:
             add_more.click()
@@ -349,8 +399,18 @@ def introduction():
             driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         except:
             driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            try:
+                WebDriverWait(driver, 40).until(
+                    EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            except:
+                while True:
+                    try:
+                        driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                    except TimeoutException:
+                        time.sleep(1)
+                        driver.refresh()
+                    else:
+                        break
             add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
             add_more.click()
             WebDriverWait(driver, 40).until(
@@ -383,9 +443,14 @@ def introduction():
             WebDriverWait(driver, 40).until(
                 EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
         except:
-            driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
+            while True:
+                try:
+                    driver.find_element_by_xpath("//div[@class = 'col nl-to-br']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         blog_text = driver.find_elements_by_xpath("//div[@class = 'col nl-to-br']")
         data = ['Introduction',blog_text[0].text,blog_text[1].text,blog_text[2].text,blog_text[3].text,blog_text[4].text,blog_text[5].text,blog_text[6].text,blog_text[7].text,blog_text[8].text,blog_text[9].text]
         writer.writerow(data)
@@ -407,7 +472,6 @@ def factors():
     driver.find_element_by_xpath("//strong[contains(text(), 'Blog Post Outline')]").click()
     WebDriverWait(driver, 40).until(
         EC.visibility_of_element_located((By.XPATH, "//textarea[@name = 'biz_name']")))
-
     blog_name = driver.find_element_by_xpath("//textarea[@name = 'biz_name']")
     blog_name.clear()
     blog_name.send_keys("Factors to consider before buying "+category)
@@ -441,9 +505,14 @@ def factors():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
@@ -462,8 +531,18 @@ def factors():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -495,9 +574,14 @@ def factors():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
         add_more.click()
@@ -516,8 +600,18 @@ def factors():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -549,9 +643,14 @@ def factors():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
         add_more.click()
@@ -571,8 +670,18 @@ def factors():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -603,9 +712,14 @@ def factors():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
         add_more.click()
@@ -625,8 +739,18 @@ def factors():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -715,9 +839,14 @@ def factor_to_consider():
                     WebDriverWait(driver, 40).until(
                         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
                 except:
-                    driver.refresh()
-                    WebDriverWait(driver, 40).until(
-                        EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
+                    while True:
+                        try:
+                            driver.find_element_by_xpath("//div[@class = 'col nl-to-br']")
+                        except TimeoutException:
+                            time.sleep(1)
+                            driver.refresh()
+                        else:
+                            break
 
                 blog_text = driver.find_elements_by_xpath("//div[@class = 'col nl-to-br']")
                 data = ['Factors to consider ('+factor+")", blog_text[0].text, blog_text[1].text]
@@ -778,9 +907,14 @@ def benefit():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
@@ -801,8 +935,18 @@ def benefit():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -834,9 +978,14 @@ def benefit():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
         add_more.click()
@@ -856,8 +1005,18 @@ def benefit():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -889,9 +1048,14 @@ def benefit():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
         add_more.click()
@@ -911,8 +1075,18 @@ def benefit():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -944,9 +1118,14 @@ def benefit():
         WebDriverWait(driver, 40).until(
             EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
     except:
-        driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        while True:
+            try:
+                driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+            except TimeoutException:
+                time.sleep(1)
+                driver.refresh()
+            else:
+                break
     driver.execute_script("arguments[0].scrollIntoView();", add_more)
     try:
         add_more.click()
@@ -966,8 +1145,18 @@ def benefit():
         driver.find_element_by_xpath("//span[@role = 'combobox']").click()
     except:
         driver.refresh()
-        WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        try:
+            WebDriverWait(driver, 40).until(
+                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+        except:
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         add_more.click()
         WebDriverWait(driver, 40).until(
@@ -1057,10 +1246,14 @@ def benefit_of_item():
                     WebDriverWait(driver, 40).until(
                         EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
                 except:
-                    driver.refresh()
-                    WebDriverWait(driver, 40).until(
-                        EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
-
+                    while True:
+                        try:
+                            driver.find_element_by_xpath("//div[@class = 'col nl-to-br']")
+                        except TimeoutException:
+                            time.sleep(1)
+                            driver.refresh()
+                        else:
+                            break
                 blog_text = driver.find_elements_by_xpath("//div[@class = 'col nl-to-br']")
                 data = ['Benefits of the item ('+benefit+")", blog_text[0].text, blog_text[1].text]
                 writer.writerow(data)
@@ -1122,9 +1315,14 @@ def conclusion():
             WebDriverWait(driver, 40).until(
                 EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
         except:
-            driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            while True:
+                try:
+                    driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
         driver.execute_script("arguments[0].scrollIntoView();", add_more)
         try:
@@ -1145,8 +1343,18 @@ def conclusion():
             driver.find_element_by_xpath("//span[@role = 'combobox']").click()
         except:
             driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_element_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            try:
+                WebDriverWait(driver, 40).until(
+                    EC.visibility_of_all_elements_located((By.XPATH, "//i[@class = 'fa fa-plus mr-2 dim']")))
+            except:
+                while True:
+                    try:
+                        driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
+                    except TimeoutException:
+                        time.sleep(1)
+                        driver.refresh()
+                    else:
+                        break
             add_more = driver.find_element_by_xpath("//i[@class = 'fa fa-plus mr-2 dim']")
             add_more.click()
             WebDriverWait(driver, 40).until(
@@ -1181,9 +1389,14 @@ def conclusion():
             WebDriverWait(driver, 40).until(
                 EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
         except:
-            driver.refresh()
-            WebDriverWait(driver, 40).until(
-                EC.visibility_of_all_elements_located((By.XPATH, "//div[@class = 'col nl-to-br']")))
+            while True:
+                try:
+                    driver.find_element_by_xpath("//div[@class = 'col nl-to-br']")
+                except TimeoutException:
+                    time.sleep(1)
+                    driver.refresh()
+                else:
+                    break
         blog_text = driver.find_elements_by_xpath("//div[@class = 'col nl-to-br']")
         data = ['Conclusion', blog_text[0].text, blog_text[1].text, blog_text[2].text, blog_text[3].text]
         writer.writerow(data)
