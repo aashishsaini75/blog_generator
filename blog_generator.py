@@ -12,7 +12,7 @@ import time
 import sys
 
 """Declaring Version"""
-ver = 1.3
+ver = 1.4
 """Getting Category Name"""
 
 category = input("\nPlease enter the category name and press enter ")
